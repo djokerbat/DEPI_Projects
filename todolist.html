@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234F5E4B'><circle cx='12' cy='12' r='4'/><path d='M12 2a10 10 0 0 0-4 19.16V17a6 6 0 0 1 8 0v4.16A10 10 0 0 0 12 2z'/></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/todolist.css?v=9">
+</head>
+<body>
+    <div class="app-layout">
+        
+        <header class="mobile-topbar d-md-none">
+            <button class="mobile-toggle-btn" id="mobileMenuToggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="brand-logo-small">
+                <svg class="brand-icon" viewBox="0 0 32 32" fill="none">
+                    <circle cx="16" cy="16" r="3.2" fill="#5A4E43"/>
+                    <ellipse cx="16" cy="7" rx="3" ry="5.5" fill="#7C6E60"/>
+                    <ellipse cx="16" cy="25" rx="3" ry="5.5" fill="#7C6E60"/>
+                    <ellipse cx="7" cy="16" rx="5.5" ry="3" fill="#7C6E60"/>
+                    <ellipse cx="25" cy="16" rx="5.5" ry="3" fill="#7C6E60"/>
+                    <ellipse cx="9.6" cy="9.6" rx="3" ry="5.5" transform="rotate(-45 9.6 9.6)" fill="#8D7F71"/>
+                    <ellipse cx="22.4" cy="9.6" rx="3" ry="5.5" transform="rotate(45 22.4 9.6)" fill="#8D7F71"/>
+                    <ellipse cx="9.6" cy="22.4" rx="3" ry="5.5" transform="rotate(45 9.6 22.4)" fill="#8D7F71"/>
+                    <ellipse cx="22.4" cy="22.4" rx="3" ry="5.5" transform="rotate(-45 22.4 22.4)" fill="#8D7F71"/>
+                </svg>
+                <span class="brand-name">ToDo</span>
+            </div>
+            <button class="theme-toggle-btn mobile-theme-btn" id="mobileThemeToggleBtn" aria-label="Toggle dark mode" title="Switch to Dark Mode">
+                <i class="fa-regular fa-moon"></i>
+            </button>
+        </header>
+
+       
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <div class="brand-logo">
+                    <svg class="brand-icon" viewBox="0 0 32 32" fill="none">
+                        <circle cx="16" cy="16" r="3" fill="#53463B"/>
+                        <ellipse cx="16" cy="6.5" rx="2.8" ry="5.5" fill="#6E5F52"/>
+                        <ellipse cx="16" cy="25.5" rx="2.8" ry="5.5" fill="#6E5F52"/>
+                        <ellipse cx="6.5" cy="16" rx="5.5" ry="2.8" fill="#6E5F52"/>
+                        <ellipse cx="25.5" cy="16" rx="5.5" ry="2.8" fill="#6E5F52"/>
+                        <ellipse cx="9.3" cy="9.3" rx="2.8" ry="5.5" transform="rotate(-45 9.3 9.3)" fill="#7E6F62"/>
+                        <ellipse cx="22.7" cy="9.3" rx="2.8" ry="5.5" transform="rotate(45 22.7 9.3)" fill="#7E6F62"/>
+                        <ellipse cx="9.3" cy="22.7" rx="2.8" ry="5.5" transform="rotate(45 9.3 22.7)" fill="#7E6F62"/>
+                        <ellipse cx="22.7" cy="22.7" rx="2.8" ry="5.5" transform="rotate(-45 22.7 22.7)" fill="#7E6F62"/>
+                    </svg>
+                    <span class="brand-name">ToDo</span>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <button class="nav-item active" data-filter="all" id="navHome">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Home</span>
+                    </button>
+                    <button class="nav-item" data-filter="today" id="navToday">
+                        <i class="fa-regular fa-calendar"></i>
+                        <span>Today</span>
+                    </button>
+                    <button class="nav-item" data-filter="upcoming" id="navUpcoming">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>Upcoming</span>
+                    </button>
+                    <button class="nav-item" data-filter="completed" id="navCompleted">
+                        <i class="fa-solid fa-check-double"></i>
+                        <span>Completed</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="quote-container">
+                    <p class="sidebar-quote">Small steps<br>make big progress</p>
+                    <span class="sidebar-heart">♡</span>
+                </div>
+               
+                <div class="botanical-branch">
+                    <svg viewBox="0 0 70 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M55 115 C45 90 35 60 25 15" stroke="#7A6F64" stroke-width="2.2" stroke-linecap="round"/>
+                        
+                        <path d="M25 15 C15 10 12 2 24 2 C32 2 28 10 25 15 Z" fill="#D3DDD0" stroke="#7A6F64" stroke-width="1.8"/>
+                        <path d="M30 40 C14 36 12 24 24 26 C32 28 32 36 30 40 Z" fill="#D3DDD0" stroke="#7A6F64" stroke-width="1.8"/>
+                        <path d="M32 42 C48 38 52 26 40 28 C32 30 32 38 32 42 Z" fill="#D3DDD0" stroke="#7A6F64" stroke-width="1.8"/>
+                        <path d="M36 68 C20 64 18 52 30 54 C38 56 38 64 36 68 Z" fill="#D3DDD0" stroke="#7A6F64" stroke-width="1.8"/>
+                        <path d="M38 70 C54 66 58 54 46 56 C38 58 38 66 38 70 Z" fill="#D3DDD0" stroke="#7A6F64" stroke-width="1.8"/>
+                        <path d="M43 95 C28 92 26 80 38 82 C46 84 45 92 43 95 Z" fill="#D3DDD0" stroke="#7A6F64" stroke-width="1.8"/>
+                        <path d="M45 97 C60 94 62 82 51 84 C44 86 44 94 45 97 Z" fill="#D3DDD0" stroke="#7A6F64" stroke-width="1.8"/>
+                    </svg>
+                </div>
+            </div>
+        </aside>
+
+        <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+       
+        <main class="main-content">
+            
+            <div class="top-header">
+                <div class="header-left">
+                    <h1 class="greeting-heading">
+                        <span id="timeGreeting">Welcome</span>,
+                    </h1>
+                    <div class="user-signature">
+                        <span id="displayUserName">Group 4</span>
+                        <span class="heart-symbol">♡</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="search-box-wrapper" id="searchWrapper">
+                        <input type="text" class="search-input" id="taskSearchInput" placeholder="Search tasks..." aria-label="Search tasks">
+                        <button class="icon-btn search-toggle" id="searchToggleBtn" title="Search tasks" aria-label="Search tasks">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+
+                    
+                    <div class="theme-switch-segmented" id="themeToggleBtn" role="button" tabindex="0" aria-label="Toggle dark/light mode" title="Switch Theme">
+                        <div class="theme-slider-thumb"></div>
+                        <button type="button" class="theme-segment-btn segment-light active" data-mode="light" title="Light mode" aria-label="Light mode">
+                            <i class="fa-solid fa-sun"></i>
+                        </button>
+                        <button type="button" class="theme-segment-btn segment-dark" data-mode="dark" title="Dark mode" aria-label="Dark mode">
+                            <i class="fa-solid fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+           
+            <div class="task-input-section">
+                <div class="input-card">
+                    <input 
+                        type="text" 
+                        id="newTaskInput" 
+                        class="task-text-input" 
+                        placeholder="Add a new task..." 
+                        autocomplete="off"
+                    >
+                    <div class="input-actions">
+
+                        <div class="quick-tag-dropdown dropdown">
+                            <button class="btn-tag-selector d-none" type="button" id="quickTagBtn" data-bs-toggle="dropdown" aria-expanded="false" title="Set due date">
+                                <span id="selectedTagLabel">Today</span>
+                                <i class="fa-solid fa-chevron-down ms-1"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end tag-dropdown-menu" aria-labelledby="quickTagBtn">
+                                <li><a class="dropdown-item tag-opt" href="#" data-tag="Today"><span class="badge-dot dot-peach"></span> Today</a></li>
+                                <li><a class="dropdown-item tag-opt" href="#" data-tag="Tomorrow"><span class="badge-dot dot-purple"></span> Tomorrow</a></li>
+                                <li><a class="dropdown-item tag-opt" href="#" data-tag="This week"><span class="badge-dot dot-blue"></span> This week</a></li>
+                                <li><a class="dropdown-item tag-opt" href="#" data-tag="Upcoming"><span class="badge-dot dot-green"></span> Upcoming</a></li>
+                            </ul>
+                        </div>
+
+                       
+                        <button class="btn-add-task" id="addTaskBtn" aria-label="Add task">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="filter-pills-bar">
+                <button class="filter-pill active" data-filter="all">All</button>
+                <button class="filter-pill" data-filter="today">Today</button>
+                <button class="filter-pill" data-filter="upcoming">Upcoming</button>
+                <button class="filter-pill" data-filter="completed">Completed</button>
+            </div>
+
+            
+            <section class="tasks-card">
+                <div class="tasks-header-row d-none" id="tasksActiveFilterTitle">
+                    <span class="active-filter-badge" id="filterStatusText">All Tasks</span>
+                    <button class="clear-completed-btn d-none" id="clearCompletedBtn">Clear completed</button>
+                </div>
+
+                <div class="tasks-list" id="tasksList">
+                    
+                </div>
+
+             
+                <div class="tasks-empty-state d-none" id="emptyState">
+                    <div class="empty-icon">
+                        <i class="fa-regular fa-clipboard"></i>
+                    </div>
+                    <p class="empty-title">No tasks found</p>
+                    <p class="empty-subtitle">Take a deep breath and relax, or add a new task above!</p>
+                </div>
+            </section>
+        </main>
+
+       
+        <aside class="right-panel">
+         
+            <div class="aesthetic-quote-card">
+                <div class="quote-image-container">
+                    <img src="images/quote-bg.jpg?v=2" alt="Aesthetic dusk view" class="quote-bg-img" id="quoteImg">
+                    <div class="quote-overlay">
+                        <div class="handwritten-quote">
+                            <span class="quote-line-1">Better things</span>
+                            <span class="quote-line-2">ahead <span class="quote-heart">♡</span></span>
+                            <span class="quote-bottom-heart">♡</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="widget-card progress-widget">
+                <div class="widget-header">
+                    <h2 class="widget-title">Today's progress</h2>
+                    <span class="progress-ratio" id="todayProgressRatio">3/5</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-track">
+                        <div class="progress-bar-fill" id="todayProgressBar" style="width: 60%;"></div>
+                    </div>
+                    <div class="progress-toggle-indicator" id="progressToggleIndicator"></div>
+                </div>
+            </div>
+
+           
+            <div class="widget-card quick-view-widget">
+                <h2 class="widget-title mb-3">Quick view</h2>
+                <div class="quick-view-list">
+                    <div class="quick-view-item" id="filterHighPriority" role="button" title="View high priority tasks">
+                        <div class="quick-view-left">
+                            <span class="status-indicator-dot dot-red"></span>
+                            <span class="quick-label">High priority</span>
+                        </div>
+                        <span class="quick-count" id="countHighPriority">2</span>
+                    </div>
+
+                    <div class="quick-view-item" id="filterDueToday" role="button" title="View tasks due today">
+                        <div class="quick-view-left">
+                            <span class="status-indicator-dot dot-amber"></span>
+                            <span class="quick-label">Due today</span>
+                        </div>
+                        <span class="quick-count" id="countDueToday">3</span>
+                    </div>
+
+                    <div class="quick-view-item" id="filterOverdue" role="button" title="View overdue tasks">
+                        <div class="quick-view-left">
+                            <span class="status-indicator-dot dot-purple"></span>
+                            <span class="quick-label">Overdue</span>
+                        </div>
+                        <span class="quick-count" id="countOverdue">0</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    
+    <div class="modal fade" id="addTaskModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered custom-modal-dialog">
+            <div class="modal-content add-task-modal-content">
+                <div class="modal-header border-0 pb-1">
+                    <h3 class="add-modal-title">Add New Task</h3>
+                    <button type="button" class="btn-close-modal" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="modal-body pt-3 pb-2">
+                    
+                    <div class="task-name-field mb-3">
+                        <input type="text" class="task-name-input" id="modalTaskNameInput" placeholder="Task name..." autocomplete="off">
+                    </div>
+
+                   
+                    <div class="modal-option-row" id="modalDueDateRow">
+                        <div class="option-row-trigger" id="dueDateRowTrigger" role="button" tabindex="0" title="Click to open calendar">
+                            <div class="option-row-left">
+                                <i class="fa-regular fa-calendar option-icon"></i>
+                                <span class="option-label" id="modalDueDateLabel">Due date</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <input type="date" id="modalNativeDatePicker" class="calendar-native-input" title="Pick date">
+                                <i class="fa-solid fa-chevron-down option-chevron"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                 
+                    <div class="modal-option-row dropdown" id="modalPriorityRow">
+                        <div class="option-row-trigger" data-bs-toggle="dropdown" aria-expanded="false" role="button">
+                            <div class="option-row-left">
+                                <i class="fa-regular fa-flag option-icon"></i>
+                                <span class="option-label" id="modalPriorityLabel">Priority</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down option-chevron"></i>
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu-end tag-dropdown-menu">
+                            <li><a class="dropdown-item modal-priority-opt" href="#" data-val="normal"><i class="fa-regular fa-circle me-2 text-muted"></i> Normal</a></li>
+                            <li><a class="dropdown-item modal-priority-opt" href="#" data-val="high"><i class="fa-solid fa-flag me-2 text-danger"></i> High priority</a></li>
+                        </ul>
+                    </div>
+
+                    
+                    <div class="modal-option-row tag-input-row" id="modalTagRow">
+                        <div class="option-row-left w-100">
+                            <i class="fa-solid fa-tag option-icon"></i>
+                            <input type="text" class="modal-tag-input" id="modalTagInput" placeholder="Add a tag (optional)..." autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-2 pb-2 d-flex justify-content-between">
+                    <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn-modal-add" id="btnSubmitNewTask">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="modal fade" id="editTaskModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content custom-modal">
+                <div class="modal-header border-0">
+                    <h3 class="modal-title fs-5">Edit Task</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label text-muted small">Task Description</label>
+                        <input type="text" class="form-control custom-input" id="editTaskTitle">
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <label class="form-label text-muted small">Tag / When</label>
+                            <select class="form-select custom-input" id="editTaskTag">
+                                <option value="Today">Today</option>
+                                <option value="Tomorrow">Tomorrow</option>
+                                <option value="This week">This week</option>
+                                <option value="Upcoming">Upcoming</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label text-muted small">Priority</label>
+                            <select class="form-select custom-input" id="editTaskPriority">
+                                <option value="normal">Normal</option>
+                                <option value="high">High Priority</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary-custom" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary-custom" id="saveEditTaskBtn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content custom-modal">
+                <div class="modal-header border-0">
+                    <h3 class="modal-title fs-5">Personalization & Settings</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label text-muted small">Your Name</label>
+                        <input type="text" class="form-control custom-input" id="settingUserName" value="Yasmin">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-muted small">Inspirational Quote</label>
+                        <input type="text" class="form-control custom-input" id="settingQuoteText" value="Better things ahead">
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="settingSoundToggle" checked>
+                        <label class="form-check-label" for="settingSoundToggle">Satisfying completion sound effect</label>
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="settingConfettiToggle" checked>
+                        <label class="form-check-label" for="settingConfettiToggle">Celebratory confetti on 100% completion</label>
+                    </div>
+                    <hr class="modal-divider">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="small text-muted">Reset sample tasks from screenshot</span>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" id="resetSampleTasksBtn">Reset Tasks</button>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-primary-custom w-100" id="saveSettingsBtn">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+    <script src="js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="js/todolist.js?v=9"></script>
+</body>
+</html>
