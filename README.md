@@ -1,14 +1,19 @@
+
+<p align="center">
+  <img src="images/depi.jpeg" alt="Training Company Logo" height="65">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="images/itc.jpeg" alt="DEPI Logo" height="65">
+</p>
+
+
 # 🌿 ToDo — Task Management Web App
 
 <p align="center">
-&#x20; <img src="[https://img.shields.io/badge/DEPI-Training-66785F?style=for-the-badge](https://img.shields.io/badge/DEPI-Training-66785F?style=for-the-badge)" alt="DEPI Training">
-&#x20; <img src="[https://img.shields.io/badge/Team-4-C7A27C?style=for-the-badge](https://img.shields.io/badge/Team-4-C7A27C?style=for-the-badge)" alt="Team 4">
-&#x20; <img src="[https://img.shields.io/badge/Frontend-Development-879A78?style=for-the-badge](https://img.shields.io/badge/Frontend-Development-879A78?style=for-the-badge)" alt="Frontend Development">
+  <img src="https://img.shields.io/badge/DEPI-Training-66785F?style=for-the-badge" alt="DEPI Training">
+  <img src="https://img.shields.io/badge/Team-4-C7A27C?style=for-the-badge" alt="Team 4">
+  <img src="https://img.shields.io/badge/Frontend-Development-879A78?style=for-the-badge" alt="Frontend Development">
 </p>
 
-<p align="center">
-&#x20; \<b>Plan smarter. Stay organized. Make every day count.\</b>
-</p>
 
 <p align="center">
 &#x20; A collaborative task management project developed by Team 4 during DEPI Front-End Development Training.
