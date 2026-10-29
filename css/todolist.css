@@ -1,6 +1,3 @@
-/* =========================================================
-   Aesthetic To-Do List - Modern & Clean Stylesheet
-   ========================================================= */
 
 :root {
     --bg-page: #F7F4EF;
@@ -71,7 +68,7 @@
     --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
-/* Base Reset */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -87,7 +84,7 @@ body {
     transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Layout */
+
 .app-layout {
     display: flex;
     min-height: 100vh;
@@ -97,7 +94,7 @@ body {
     position: relative;
 }
 
-/* Sidebar */
+
 .sidebar {
     width: 240px;
     flex-shrink: 0;
@@ -392,7 +389,7 @@ body {
     transform: scale(1.05);
 }
 
-/* Filter Pills */
+
 .filter-pills-bar {
     display: flex;
     gap: 8px;
