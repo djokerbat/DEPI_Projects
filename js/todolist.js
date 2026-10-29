@@ -1,11 +1,8 @@
-/**
- * Aesthetic To-Do List Application
- * Clean, lightweight, and modern JavaScript
- */
+
 (function () {
     'use strict';
 
-    // Sample initial tasks
+  
     const INITIAL_TASKS = [
         { id: '1', title: 'Finish ITC project', tag: 'Today', priority: 'high', completed: false },
         { id: '2', title: "Study for next week's exam", tag: 'Tomorrow', priority: 'high', completed: false },
@@ -14,7 +11,7 @@
         { id: '5', title: 'Plan grocery shopping', tag: 'This week', priority: 'normal', completed: false }
     ];
 
-    // State
+   
     let tasks = [];
     let currentFilter = 'all';
     let searchQuery = '';
@@ -22,7 +19,6 @@
     let editingTaskId = null;
     let currentTheme = localStorage.getItem('team4_theme') || localStorage.getItem('yasmin_theme') || 'light';
 
-    // DOM Elements
     const elements = {
         tasksList: document.getElementById('tasksList'),
         emptyState: document.getElementById('emptyState'),
@@ -59,7 +55,6 @@
 
     const editModal = elements.editModalEl && window.bootstrap ? new bootstrap.Modal(elements.editModalEl) : null;
 
-    // Load tasks from localStorage
     function loadTasks() {
         const stored = localStorage.getItem('team4_tasks') || localStorage.getItem('yasmin_tasks');
         if (stored) {
@@ -74,12 +69,10 @@
         }
     }
 
-    // Save tasks to localStorage
     function saveTasks() {
         localStorage.setItem('team4_tasks', JSON.stringify(tasks));
     }
 
-    // Theme Management
     function applyTheme(theme) {
         currentTheme = theme;
         if (theme === 'dark') {
@@ -100,7 +93,6 @@
         applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
     }
 
-    // Tag helper
     function getTagClass(tag) {
         switch (tag) {
             case 'Today': return 'tag-today';
@@ -110,9 +102,7 @@
         }
     }
 
-    // Render tasks list
     function renderTasks() {
-        // Filter logic
         const filtered = tasks.filter(task => {
             if (searchQuery.trim() !== '') {
                 const query = searchQuery.toLowerCase();
@@ -128,7 +118,6 @@
             return true;
         });
 
-        // Filter status badge & clear button
         if (currentFilter !== 'all' || searchQuery.trim() !== '') {
             elements.tasksActiveFilterTitle.classList.remove('d-none');
             let label = 'Tasks';
@@ -145,7 +134,6 @@
             elements.tasksActiveFilterTitle.classList.add('d-none');
         }
 
-        // Render HTML
         elements.tasksList.innerHTML = '';
         if (filtered.length === 0) {
             elements.emptyState.classList.remove('d-none');
@@ -179,7 +167,6 @@
                     </div>
                 `;
 
-                // Event Listeners for Item
                 const checkboxBtn = item.querySelector('.task-checkbox-btn');
                 const titleWrap = item.querySelector('.task-title-wrap');
                 const editBtn = item.querySelector('.btn-edit');
@@ -213,12 +200,10 @@
         }
     }
 
-    // Update Widgets
     function updateWidgets() {
         const total = tasks.length;
         const completed = tasks.filter(t => t.completed).length;
 
-        // Progress Widget
         if (elements.todayProgressRatio) {
             elements.todayProgressRatio.textContent = total > 0 ? `${completed}/${total}` : '0/0';
         }
@@ -227,7 +212,6 @@
             elements.todayProgressBar.style.width = `${pct}%`;
         }
 
-        // Quick View Counts
         if (elements.countHighPriority) {
             elements.countHighPriority.textContent = tasks.filter(t => t.priority === 'high' && !t.completed).length;
         }
@@ -239,7 +223,6 @@
         }
     }
 
-    // Set Active Filter
     function setFilter(filter) {
         currentFilter = filter;
 
@@ -255,7 +238,6 @@
         closeMobileSidebar();
     }
 
-    // Edit Modal Logic
     function openEditModal(task) {
         if (!editModal) return;
         editingTaskId = task.id;
@@ -283,7 +265,6 @@
         editingTaskId = null;
     }
 
-    // Mobile Sidebar
     function toggleMobileSidebar() {
         elements.sidebar.classList.toggle('open');
         elements.sidebarBackdrop.classList.toggle('active');
@@ -294,7 +275,6 @@
         elements.sidebarBackdrop.classList.remove('active');
     }
 
-    // HTML escape helper
     function escapeHtml(str) {
         if (!str) return '';
         const div = document.createElement('div');
@@ -302,7 +282,6 @@
         return div.innerHTML;
     }
 
-    // Event Listeners Setup
     function setupListeners() {
         // Add Task Form
         elements.addTaskForm.addEventListener('submit', (e) => {
@@ -324,13 +303,11 @@
             updateWidgets();
 
             elements.newTaskInput.value = '';
-            // Reset priority flag
             isQuickPriorityHigh = false;
             elements.quickPriorityBtn.classList.remove('active');
             elements.quickPriorityBtn.innerHTML = '<i class="fa-regular fa-flag"></i>';
         });
 
-        // Quick Priority Flag Toggle
         elements.quickPriorityBtn.addEventListener('click', () => {
             isQuickPriorityHigh = !isQuickPriorityHigh;
             elements.quickPriorityBtn.classList.toggle('active', isQuickPriorityHigh);
@@ -339,13 +316,11 @@
                 : '<i class="fa-regular fa-flag"></i>';
         });
 
-        // Search Input
         elements.taskSearchInput.addEventListener('input', (e) => {
             searchQuery = e.target.value;
             renderTasks();
         });
 
-        // Filter Pills & Nav Items
         elements.filterPills.forEach(pill => {
             pill.addEventListener('click', () => setFilter(pill.dataset.filter));
         });
@@ -354,12 +329,10 @@
             item.addEventListener('click', () => setFilter(item.dataset.filter));
         });
 
-        // Quick View Widgets click to filter
         elements.filterHighPriority.addEventListener('click', () => setFilter('high-priority'));
         elements.filterDueToday.addEventListener('click', () => setFilter('today'));
         elements.filterCompleted.addEventListener('click', () => setFilter('completed'));
 
-        // Clear Completed Tasks
         elements.clearCompletedBtn.addEventListener('click', () => {
             tasks = tasks.filter(t => !t.completed);
             saveTasks();
@@ -367,19 +340,15 @@
             updateWidgets();
         });
 
-        // Theme Toggle
         elements.themeToggleBtn.addEventListener('click', toggleTheme);
         elements.mobileThemeToggleBtn.addEventListener('click', toggleTheme);
 
-        // Edit Modal Save
         elements.saveEditTaskBtn.addEventListener('click', saveEditedTask);
 
-        // Mobile Sidebar
         elements.mobileMenuToggle.addEventListener('click', toggleMobileSidebar);
         elements.sidebarBackdrop.addEventListener('click', closeMobileSidebar);
     }
 
-    // Init
     function init() {
         loadTasks();
         applyTheme(currentTheme);
