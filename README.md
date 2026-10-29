@@ -27,6 +27,8 @@
 
 With a clean dashboard, task categories, priority levels, and daily progress tracking, the app brings essential planning tools together in one interface.
 
+🚀 **Live Demo:** [View Project](https://djokerbat.github.io/DEPI_Projects/)
+
 ## ✨ Features
 
 - &#x20;Add and edit tasks
