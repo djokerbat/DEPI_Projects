@@ -7,12 +7,11 @@
     
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234F5E4B'><circle cx='12' cy='12' r='4'/><path d='M12 2a10 10 0 0 0-4 19.16V17a6 6 0 0 1 8 0v4.16A10 10 0 0 0 12 2z'/></svg>">
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- CSS Dependencies -->
+ 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/todolist.css">
@@ -20,7 +19,7 @@
 <body>
     <div class="app-layout">
         
-        <!-- Mobile Topbar -->
+        <!-- Topbar -->
         <header class="mobile-topbar d-md-none">
             <button class="icon-btn" id="mobileMenuToggle" aria-label="Toggle menu">
                 <i class="fa-solid fa-bars"></i>
@@ -91,10 +90,10 @@
             </div>
         </aside>
 
-        <!-- Sidebar Backdrop for Mobile -->
+        
         <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
-        <!-- Main Content -->
+        
         <main class="main-content">
             <header class="top-header">
                 <div class="header-left">
@@ -106,20 +105,20 @@
                 </div>
 
                 <div class="header-right">
-                    <!-- Search Input -->
+                   
                     <div class="search-box-wrapper" id="searchWrapper">
                         <i class="fa-solid fa-magnifying-glass search-icon"></i>
                         <input type="text" class="search-input" id="taskSearchInput" placeholder="Search tasks..." aria-label="Search tasks">
                     </div>
 
-                    <!-- Theme Toggle -->
+                    
                     <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle dark/light mode" aria-label="Toggle theme">
                         <i class="fa-regular fa-moon" id="themeIcon"></i>
                     </button>
                 </div>
             </header>
 
-            <!-- Task Input Section (Direct & Clean) -->
+           
             <section class="task-input-section">
                 <form class="input-card" id="addTaskForm">
                     <input 
@@ -131,7 +130,7 @@
                         required
                     >
                     <div class="input-actions">
-                        <!-- Quick Tag Selector -->
+                       
                         <select id="quickTagSelect" class="form-select-tag" aria-label="Select tag">
                             <option value="Today">Today</option>
                             <option value="Tomorrow">Tomorrow</option>
@@ -139,12 +138,12 @@
                             <option value="Upcoming">Upcoming</option>
                         </select>
 
-                        <!-- Priority Toggle Flag -->
+                        
                         <button type="button" class="btn-flag-toggle" id="quickPriorityBtn" title="Toggle priority">
                             <i class="fa-regular fa-flag"></i>
                         </button>
 
-                        <!-- Add Button -->
+                       
                         <button type="submit" class="btn-add-task" id="addTaskBtn" aria-label="Add task">
                             <i class="fa-solid fa-plus"></i>
                         </button>
@@ -152,7 +151,7 @@
                 </form>
             </section>
 
-            <!-- Filter Pills -->
+           
             <nav class="filter-pills-bar">
                 <button class="filter-pill active" data-filter="all">All</button>
                 <button class="filter-pill" data-filter="today">Today</button>
@@ -160,17 +159,15 @@
                 <button class="filter-pill" data-filter="completed">Completed</button>
             </nav>
 
-            <!-- Tasks Container -->
+            
             <section class="tasks-card">
                 <div class="tasks-header-row d-none" id="tasksActiveFilterTitle">
                     <span class="active-filter-badge" id="filterStatusText">All Tasks</span>
                     <button type="button" class="clear-completed-btn d-none" id="clearCompletedBtn">Clear completed</button>
                 </div>
 
-                <!-- List of tasks rendered dynamically -->
                 <div class="tasks-list" id="tasksList"></div>
 
-                <!-- Empty State -->
                 <div class="tasks-empty-state d-none" id="emptyState">
                     <div class="empty-icon">
                         <i class="fa-regular fa-clipboard"></i>
@@ -181,9 +178,7 @@
             </section>
         </main>
 
-        <!-- Right Panel (Widgets) -->
         <aside class="right-panel">
-            <!-- Aesthetic Image / Quote Card -->
             <div class="aesthetic-quote-card">
                 <div class="quote-image-container">
                     <img src="images/quote-bg.jpg" alt="Aesthetic dusk view" class="quote-bg-img" id="quoteImg">
@@ -197,7 +192,6 @@
                 </div>
             </div>
 
-            <!-- Progress Widget -->
             <div class="widget-card progress-widget">
                 <div class="widget-header">
                     <h2 class="widget-title">Today's progress</h2>
@@ -210,7 +204,6 @@
                 </div>
             </div>
 
-            <!-- Quick View Widget -->
             <div class="widget-card quick-view-widget">
                 <h2 class="widget-title mb-3">Quick view</h2>
                 <div class="quick-view-list">
@@ -242,7 +235,6 @@
         </aside>
     </div>
 
-    <!-- Edit Task Modal (Single, Clean Modal) -->
     <div class="modal fade" id="editTaskModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content custom-modal">
@@ -282,7 +274,6 @@
         </div>
     </div>
 
-    <!-- JavaScript Dependencies -->
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/todolist.js"></script>
 </body>
